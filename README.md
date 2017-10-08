@@ -5,7 +5,7 @@ The purpose of this project is to create a simple, yet fast data visualization f
 
 This project consists of 3 parts 
 
-- An openresty based nginx interface to ingest data straight into Akumuli
+- An openresty based nginx interface to ingest HTTP JSON data straight into Akumuli
 - Akumuli running as a time series database
 - A nodejs based server running as a simple JSON data source , feeding information from Akumuli to your grafana instance.
 
@@ -24,6 +24,14 @@ cd nginx
 nginx -p `pwd`/ -c conf/nginx.conf
 
 ```
+
+Once the nginx servers are running you could feed JSON data via POST method to the local endpoint. Example
+
+````
+curl -i -X POST http://localhost:8080/set -d '{"temperature": 12, "humidity": 89}'
+
+```
+
 
 Then open another command prompt and start nodejs server
 
