@@ -17,7 +17,7 @@ This project consists of 3 parts
 
 Once everything is ready, run the nginx workers
 
-````
+```
 PATH=/usr/local/openresty/nginx/sbin:$PATH
 
 cd nginx
@@ -27,21 +27,19 @@ nginx -p `pwd`/ -c conf/nginx.conf
 
 Once the nginx servers are running you could feed JSON data via POST method to the local endpoint. Example
 
-````
+```
 curl -i -X POST http://localhost:8080/set -d '{"temperature": 12, "humidity": 89}'
 
 ```
-
-
+This will create two time series - temperature and humidity into Akkumuli
 Then open another command prompt and start nodejs server
 
-````
+```
 node index.js
 
 ```
 
 Once the nodejs server is running, point Grafana to your server instance and start charting. Its as simple.
-
 
 # Roadmap
 
