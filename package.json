@@ -1,0 +1,22 @@
+{
+  "name": "node-akumuli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.5.0",
+    "event-stream": "^3.3.4",
+    "express": "^4.16.1",
+    "moment": "^2.18.1",
+    "moment": "^2.0.0",
+    "request": "^2.83.0",
+    "restler": "^3.4.0",
+    "socket.io": "^2.0.3",
+    "underscore": "^1.8.3"
+  }
+}
