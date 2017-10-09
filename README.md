@@ -40,6 +40,15 @@ node index.js
 ```
 
 Once the nodejs server is running, point Grafana to your server instance and start charting. Its as simple.
+# Tag support
+
+Though the series names will be autosuggested in grafana, you could add multiple tags to your series in order to filter your results. E.g.
+
+```
+temperature sensor=1 
+
+```
+will add **where** filter in Akumuli query with sensor:["1"] query. Any combination of tags is supported. 
 
 # Roadmap
 

@@ -72,24 +72,49 @@ app.post('/query', function(req, res) {
             }
             else if (target.type === 'timeserie') {
                 var agg = "mean";
+                var tags = [];
+                var target = target.target;
                 var result = {
-                    "target": target.target, // The field being queried for
+                    "target": "", // The field being queried for
                     "datapoints": []
                 };
-                if (target.target.indexOf(":") !== -1) {
-                    var token = target.target.split(":");
-                    result.target = token[0];
+                if (target.indexOf(" ") !== -1) {
+                    tags = target.split(" ");
+                    target = tags.shift();
+                    tags = tags.filter(function (item){
+                         return (item.indexOf("=") !== -1);
+                    });
+                    console.log("Tags", tags);
+                }
+
+                if (target.indexOf(":") !== -1) {
+                    var token = target.split(":");
+                    target = token[0];
                     agg = token[1];
                 }
 
-                group_ag["group-aggregate"].metric = result.target;
+                group_ag["group-aggregate"].metric = target;
                 group_ag["group-aggregate"].step = req.body.interval;
                 group_ag["group-aggregate"].func = [agg];
 
+                if (tags.length > 0){
+
+                    var tagObj = {};
+                    _.each(tags, function(item){
+                        var k = item.split("=")[0];
+                        var v = item.split("=")[1];  
+                        if (k && v){
+                            tagObj[k] = tagObj[k] ? tagObj[k].push(v) : [v];
+                        }
+                        
+                    });
+                    group_ag["group-aggregate"].where = tagObj;
+
+                }
                 group_ag.range.from = TS_GR_TO_AK(req.body.range.from);
                 group_ag.range.to = TS_GR_TO_AK(req.body.range.to);
 
-                //console.log(group_ag);
+                //console.log(JSON.stringify(group_ag));
                 akumuli.ExecQuery(group_ag, function(err, item) {
 
                     // indicates the last item
