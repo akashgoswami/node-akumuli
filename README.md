@@ -40,6 +40,25 @@ node index.js
 ```
 
 Once the nodejs server is running, point Grafana to your server instance and start charting. Its as simple.
+
+# Aggregation function
+
+An optional aggregation function can be specified by appending the function name with series name after a colon. E.g. to get the max value of temperature during the aggregation period 
+
+```
+temperature:max
+
+```
+Following aggregation functions are supported 
+
+- count - total number of data points in the series (or in time range)
+- max - largest value in the series (or in time range)
+- min - smallest value in the series (or in time range)
+- mean - mean value of the series (or in time range)
+- sum - sum of all data points in the series (or in time range)
+
+
+
 # Tag support
 
 Though the series names will be autosuggested in grafana, you could add multiple tags to your series in order to filter your results. E.g.
