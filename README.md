@@ -1,13 +1,15 @@
 # node-akumuli
 A data ingestion and visualization framework based on openresty, Akumuli and Grafana
 
+![Grafana snapshot](/grfana.PNG)
+
 The purpose of this project is to create a simple, yet fast data visualization framework for simple charting and monitoring needs. 
 
 This project consists of 3 parts 
 
-- An openresty based nginx interface to ingest HTTP JSON data straight into Akumuli
-- Akumuli running as a time series database
-- A nodejs based server running as a simple JSON data source , feeding information from Akumuli to your grafana instance.
+- An openresty based nginx interface to ingest HTTP JSON data straight into Akumuli (optional, data can be stored into Akumuli by any other means as well)
+- Akumuli running as a time series database and aggregation server. 
+- A nodejs based app running as a simple JSON data source, feeding information from Akumuli to your grafana instance.
 
 # Get Started
 
